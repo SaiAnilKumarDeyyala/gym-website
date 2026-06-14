@@ -35,4 +35,9 @@ class Member extends Model
     protected $casts = [
         'date_of_birth' => 'date',
     ];
+
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
+    }
 }
