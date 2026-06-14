@@ -73,8 +73,13 @@
                             <x-input-error :messages="$errors->get('plan_name')" class="mt-2" />
 
                             <label for="start_date" class="block font-medium text-sm text-gray-700 mt-4">Start Date</label>
-                            <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" value="{{ date('Y-m-d') }}" required />
+                            <x-text-input id="start_date" name="start_date" type="date" class="mt-1 block w-full" value="{{ old('start_date', date('Y-m-d')) }}" required />
                             <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
+
+                            <label for="payment_date" class="block font-medium text-sm text-gray-700 mt-4">Payment Received Date</label>
+                            <p class="text-sm text-gray-500">Change this if the payment was received on a previous day.</p>
+                            <x-text-input id="payment_date" name="payment_date" type="date" class="mt-1 block w-full" value="{{ old('payment_date', date('Y-m-d')) }}" required />
+                            <x-input-error :messages="$errors->get('payment_date')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

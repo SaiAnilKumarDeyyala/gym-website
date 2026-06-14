@@ -54,42 +54,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
             '12 Months Cardio+Strength' => 13999,
         ];
 
-        $revenueAllTime = Cache::remember('dashboard.revenue_all_time', 300, function () use ($prices) {
-            $items = Membership::select('plan_name', 'payment_amount')->get();
-            return (float) $items->reduce(function ($carry, $m) use ($prices) {
-                $amt = $m->payment_amount ?? ($prices[$m->plan_name] ?? 0);
-                return $carry + (float) $amt;
-            }, 0);
+        $revenueAllTime = Cache::remember('dashboard.revenue_all_time', 300, function () {
+            return (float) Membership::where('status', '!=', 'cancelled')
+                ->where('payment_amount', '>', 0)
+                ->sum('payment_amount');
         });
 
-        $revenueThisMonth = Cache::remember('dashboard.revenue_this_month', 300, function () use ($prices) {
-            $items = Membership::select('plan_name', 'payment_amount', 'start_date')
-                ->whereBetween('start_date', [now()->startOfMonth()->toDateString(), now()->endOfMonth()->toDateString()])
-                ->get();
-            return (float) $items->reduce(function ($carry, $m) use ($prices) {
-                $amt = $m->payment_amount ?? ($prices[$m->plan_name] ?? 0);
-                return $carry + (float) $amt;
-            }, 0);
+        $revenueThisMonth = Cache::remember('dashboard.revenue_this_month', 300, function () {
+            return (float) Membership::where('created_at', '>=', now()->startOfMonth())
+                ->where('status', '!=', 'cancelled')
+                ->where('payment_amount', '>', 0)
+                ->sum('payment_amount');
         });
 
-        $revenueLast3Months = Cache::remember('dashboard.revenue_last_3_months', 300, function () use ($prices) {
-            $items = Membership::select('plan_name', 'payment_amount', 'start_date')
-                ->whereBetween('start_date', [now()->subMonths(3)->startOfDay()->toDateString(), now()->endOfDay()->toDateString()])
-                ->get();
-            return (float) $items->reduce(function ($carry, $m) use ($prices) {
-                $amt = $m->payment_amount ?? ($prices[$m->plan_name] ?? 0);
-                return $carry + (float) $amt;
-            }, 0);
+        $revenueLast3Months = Cache::remember('dashboard.revenue_last_3_months', 300, function () {
+            return (float) Membership::where('created_at', '>=', now()->subMonths(3)->startOfDay())
+                ->where('status', '!=', 'cancelled')
+                ->where('payment_amount', '>', 0)
+                ->sum('payment_amount');
         });
 
-        $revenueLast6Months = Cache::remember('dashboard.revenue_last_6_months', 300, function () use ($prices) {
-            $items = Membership::select('plan_name', 'payment_amount', 'start_date')
-                ->whereBetween('start_date', [now()->subMonths(6)->startOfDay()->toDateString(), now()->endOfDay()->toDateString()])
-                ->get();
-            return (float) $items->reduce(function ($carry, $m) use ($prices) {
-                $amt = $m->payment_amount ?? ($prices[$m->plan_name] ?? 0);
-                return $carry + (float) $amt;
-            }, 0);
+        $revenueLast6Months = Cache::remember('dashboard.revenue_last_6_months', 300, function () {
+            return (float) Membership::where('created_at', '>=', now()->subMonths(6)->startOfDay())
+                ->where('status', '!=', 'cancelled')
+                ->where('payment_amount', '>', 0)
+                ->sum('payment_amount');
         });
 
         $stats['revenue_all_time'] = $revenueAllTime;

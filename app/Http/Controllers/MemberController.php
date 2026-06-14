@@ -46,6 +46,7 @@ class MemberController extends Controller
             'phone'       => ['required', 'string', 'max:20', 'unique:members,phone'],
             'plan_name'   => ['required', 'string'],
             'start_date'  => ['required', 'date'],
+            'payment_date' => ['required', 'date'],
         ]);
 
         // 2. Map SK Fitness Plans to Duration in Days and Prices
@@ -95,7 +96,7 @@ class MemberController extends Controller
             ]);
 
             // B. Instantly Assign the Membership Plan (include payment amount)
-            $member->memberships()->create([
+            $membership = $member->memberships()->make([
                 'plan_name'     => $validated['plan_name'],
                 'duration_days' => $durationDays,
                 'start_date'    => $validated['start_date'],
@@ -104,12 +105,20 @@ class MemberController extends Controller
                 'payment_amount' => $prices[$validated['plan_name']] ?? null,
             ]);
 
+            // Override timestamps so dashboard queries use the payment date (cash-basis)
+            $membership->created_at = Carbon::parse($validated['payment_date'])->startOfDay();
+            $membership->updated_at = Carbon::parse($validated['payment_date'])->startOfDay();
+            $membership->save();
+
             return $member;
         });
 
         // 4. Redirect straight to the directory to see the new member
         // Clear dashboard caches so revenue and expiring lists update immediately
+        Cache::forget('dashboard.revenue_all_time');
         Cache::forget('dashboard.revenue_this_month');
+        Cache::forget('dashboard.revenue_last_3_months');
+        Cache::forget('dashboard.revenue_last_6_months');
         Cache::forget('dashboard.expiring_soon');
         return redirect()->route('members.index')->with('success', 'Member and Plan successfully added! Member Code: ' . ($createdMember->member_code ?? ''));
     }
