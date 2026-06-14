@@ -26,9 +26,7 @@
 
                         <div>
                             <h3 class="font-semibold">1. Personal Details</h3>
-                            <label for="member_code" class="block font-medium text-sm text-gray-700 mt-2">Member Code (e.g., GYM001)</label>
-                            <x-input id="member_code" class="block mt-1 w-full" type="text" name="member_code" :value="old('member_code')" required />
-                            <x-input-error :messages="$errors->get('member_code')" class="mt-2" />
+                            <p class="text-sm text-gray-500">Member code will be generated automatically (prefix: SK).</p>
 
                             <label for="name" class="block font-medium text-sm text-gray-700 mt-4">Full Name</label>
                             <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />

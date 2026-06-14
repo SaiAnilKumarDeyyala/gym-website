@@ -41,7 +41,7 @@ class MemberController extends Controller
     {
         // 1. Validate both Member AND Membership data
         $validated = $request->validate([
-            'member_code' => ['required', 'string', 'max:255', 'unique:members,member_code'],
+            'member_code' => ['nullable', 'string', 'max:255', 'unique:members,member_code'],
             'name'        => ['required', 'string', 'max:255'],
             'phone'       => ['required', 'string', 'max:20', 'unique:members,phone'],
             'plan_name'   => ['required', 'string'],
@@ -85,11 +85,11 @@ class MemberController extends Controller
         // Calculate exact expiration date
         $endDate = Carbon::parse($validated['start_date'])->addDays($durationDays);
 
-        // 3. Database Transaction (Save both or save nothing)
-        DB::transaction(function () use ($validated, $durationDays, $endDate) {
+        // 3. Database Transaction (Save both or save nothing) and return created member
+        $createdMember = DB::transaction(function () use ($validated, $durationDays, $endDate, $prices) {
             // A. Create the Member
             $member = Member::create([
-                'member_code' => $validated['member_code'],
+                'member_code' => $validated['member_code'] ?? null,
                 'name'        => $validated['name'],
                 'phone'       => $validated['phone'],
             ]);
@@ -103,12 +103,14 @@ class MemberController extends Controller
                 'status'        => 'active',
                 'payment_amount' => $prices[$validated['plan_name']] ?? null,
             ]);
+
+            return $member;
         });
 
         // 4. Redirect straight to the directory to see the new member
         // Clear dashboard caches so revenue and expiring lists update immediately
         Cache::forget('dashboard.revenue_this_month');
         Cache::forget('dashboard.expiring_soon');
-        return redirect()->route('members.index')->with('success', 'Member and Plan successfully added!');
+        return redirect()->route('members.index')->with('success', 'Member and Plan successfully added! Member Code: ' . ($createdMember->member_code ?? ''));
     }
 }

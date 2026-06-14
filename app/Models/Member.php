@@ -40,4 +40,19 @@ class Member extends Model
     {
         return $this->hasMany(Membership::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function (Member $member) {
+            if (empty($member->member_code)) {
+                $prefix = 'SK';
+                $ym = now()->format('Ym');
+                $count = self::whereYear('created_at', now()->year)
+                    ->whereMonth('created_at', now()->month)
+                    ->count();
+                $seq = $count + 1;
+                $member->member_code = sprintf('%s%s%04d', $prefix, $ym, $seq);
+            }
+        });
+    }
 }
