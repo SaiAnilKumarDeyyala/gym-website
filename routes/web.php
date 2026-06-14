@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\Member;
 use App\Models\Membership;
 use Illuminate\Support\Facades\Cache;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    // Logout route (POST) — handled by AuthenticatedSessionController@destroy
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/dashboard', function () {
         $stats = [
             'total_members' => Member::count(),

@@ -15,31 +15,30 @@
     <nav class="absolute top-0 w-full z-50 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-24">
-                
                 <div class="flex items-center gap-3">
                     <div class="p-2 bg-red-600 rounded-lg shadow-lg shadow-red-600/30">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <span class="text-3xl font-extrabold tracking-widest text-white drop-shadow-md">
-                        SK<span class="text-red-500">FITNESS</span>
-                    </span>
+                    <div class="text-xl font-extrabold tracking-widest text-white">SK<span class="text-red-500">FITNESS</span></div>
                 </div>
-                
-                @if (Route::has('login'))
-                    <div>
+
+                <div>
+                    @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-bold rounded-full text-white bg-red-600 hover:bg-red-700 transition shadow-lg">
-                                Go to Dashboard
-                            </a>
+                            <div class="flex items-center gap-3">
+                                <a href="{{ url('/dashboard') }}" class="text-sm bg-white text-gray-900 px-4 py-2 rounded">Go to Dashboard</a>
+                                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="text-sm border border-white px-4 py-2 rounded text-white bg-transparent hover:bg-white/5">Log Out</button>
+                                </form>
+                            </div>
                         @else
-                            <a href="{{ route('login') }}" class="text-sm font-semibold text-gray-300 hover:text-white transition">
-                                Staff Login &rarr;
-                            </a>
+                            <a href="{{ route('login') }}" class="text-sm border border-white px-4 py-2 rounded text-white bg-transparent hover:bg-white/5">Staff Login →</a>
                         @endauth
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     </nav>
