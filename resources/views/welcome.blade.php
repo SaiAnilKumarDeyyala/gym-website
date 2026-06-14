@@ -69,6 +69,7 @@
 
     <div id="pricing" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
             <div class="text-center mb-16">
                 <h2 class="text-base text-red-600 font-semibold tracking-wide uppercase">First 50 Members Only</h2>
                 <p class="mt-2 text-4xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-5xl uppercase">
@@ -76,8 +77,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-24">
                 <div class="bg-gray-50 rounded-3xl shadow-xl border border-gray-100 p-8 transform transition hover:-translate-y-2">
                     <h3 class="text-3xl font-extrabold text-gray-900 mb-6 text-center uppercase tracking-wide">1 Month</h3>
                     <div class="space-y-6 mb-8">
@@ -96,10 +96,6 @@
                             <span class="font-extrabold text-red-600 text-2xl">₹1599</span>
                         </div>
                     </div>
-                    <ul class="text-sm text-gray-500 font-medium space-y-3">
-                        <li class="flex items-center justify-center gap-2">✓ Premium Equipment</li>
-                        <li class="flex items-center justify-center gap-2">✓ Clean Showers & Secure Lockers</li>
-                    </ul>
                 </div>
 
                 <div class="bg-gray-900 rounded-3xl shadow-2xl border border-gray-800 p-8 transform transition hover:-translate-y-2 relative overflow-hidden">
@@ -123,16 +119,120 @@
                             <span class="font-extrabold text-red-500 text-2xl">₹4499</span>
                         </div>
                     </div>
-                    <ul class="text-sm text-gray-400 font-medium space-y-3">
-                        <li class="flex items-center justify-center gap-2">✓ Certified Trainers</li>
-                        <li class="flex items-center justify-center gap-2">✓ Personalized Workout Plan</li>
-                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-gray-200 mb-20 max-w-5xl mx-auto">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 uppercase tracking-tight">Standard Membership Plans</h2>
+                <p class="mt-4 text-lg text-gray-600">Choose the duration that fits your goals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 hover:border-red-500 transition duration-300">
+                    <div class="text-center mb-6 border-b border-gray-100 pb-4">
+                        <h3 class="text-2xl font-black text-gray-900 uppercase">1 Month</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">💪 Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹1399</p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">❤️ Cardio + Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹1799</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 hover:border-red-500 transition duration-300">
+                    <div class="text-center mb-6 border-b border-gray-100 pb-4">
+                        <h3 class="text-2xl font-black text-gray-900 uppercase">3 Months</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">💪 Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹3999</p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">❤️ Cardio + Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹4999</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 hover:border-red-500 transition duration-300">
+                    <div class="text-center mb-6 border-b border-gray-100 pb-4">
+                        <h3 class="text-2xl font-black text-gray-900 uppercase">6 Months</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">💪 Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹6999</p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">❤️ Cardio + Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹8999</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 hover:border-red-500 transition duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-gray-900 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-widest">
+                        Best Value
+                    </div>
+                    <div class="text-center mb-6 border-b border-gray-100 pb-4">
+                        <h3 class="text-2xl font-black text-gray-900 uppercase">12 Months</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">💪 Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹11999</p>
+                        </div>
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">❤️ Cardio + Strength</p>
+                            <p class="text-2xl font-extrabold text-gray-900">₹13999</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-            
-            <div class="mt-16 text-center">
-                <p class="text-gray-600 font-medium">📍 First Floor, SBI Bank, Karapa</p>
+
+            <div class="mt-20 bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                <h3 class="text-center text-xl font-bold text-gray-900 mb-8 uppercase tracking-wider">All Memberships Include</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">🏋️</span>
+                        <span class="text-sm font-semibold text-gray-700">Premium Equipment</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">🧑‍🏫</span>
+                        <span class="text-sm font-semibold text-gray-700">Certified Trainers</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">📋</span>
+                        <span class="text-sm font-semibold text-gray-700">Personalized Workout</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">🚿</span>
+                        <span class="text-sm font-semibold text-gray-700">Clean Showers</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">🔒</span>
+                        <span class="text-sm font-semibold text-gray-700">Secure Lockers</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl mb-2">🚗</span>
+                        <span class="text-sm font-semibold text-gray-700">Ample Parking</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <p class="text-xl font-extrabold text-gray-900 uppercase tracking-wide mb-2">📍 First Floor, SBI Bank, Karapa</p>
+                <p class="text-gray-600 font-medium">Call/WhatsApp: <a href="tel:+919492666993" class="text-red-600 hover:underline">+91 94926 66993</a></p>
             </div>
         </div>
     </div>
